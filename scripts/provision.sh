@@ -577,3 +577,8 @@ printf "\nPATH=\"$(sudo su - vagrant -c 'composer config -g home 2>/dev/null')/v
 /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024
 /sbin/mkswap /var/swap.1
 /sbin/swapon /var/swap.1
+
+#move every php version nginx config files to sites-enables folder
+
+mv php56.example.com /etc/nginx/sites-enabled/
+mv php72.example.com /etc/nginx/sites-enabled/
