@@ -280,42 +280,42 @@ EOF
 
 # Set The Nginx & PHP-FPM User
 
-sed -i "s/user www-data;/user vagrant;/" /etc/nginx/nginx.conf
+sed -i "s/user www-data;/" /etc/nginx/nginx.conf
 sed -i "s/# server_names_hash_bucket_size.*/server_names_hash_bucket_size 64;/" /etc/nginx/nginx.conf
 
-sed -i "s/user = www-data/user = vagrant/" /etc/php/7.2/fpm/pool.d/www.conf
-sed -i "s/group = www-data/group = vagrant/" /etc/php/7.2/fpm/pool.d/www.conf
+sed -i "s/user = www-data/user = www-data/" /etc/php/7.2/fpm/pool.d/www.conf
+sed -i "s/group = www-data/group = www-data/" /etc/php/7.2/fpm/pool.d/www.conf
 
-sed -i "s/listen\.owner.*/listen.owner = vagrant/" /etc/php/7.2/fpm/pool.d/www.conf
-sed -i "s/listen\.group.*/listen.group = vagrant/" /etc/php/7.2/fpm/pool.d/www.conf
+sed -i "s/listen\.owner.*/listen.owner = www-data/" /etc/php/7.2/fpm/pool.d/www.conf
+sed -i "s/listen\.group.*/listen.group = www-data/" /etc/php/7.2/fpm/pool.d/www.conf
 sed -i "s/;listen\.mode.*/listen.mode = 0666/" /etc/php/7.2/fpm/pool.d/www.conf
 
-sed -i "s/user = www-data/user = vagrant/" /etc/php/7.3/fpm/pool.d/www.conf
-sed -i "s/group = www-data/group = vagrant/" /etc/php/7.3/fpm/pool.d/www.conf
+sed -i "s/user = www-data/user = www-data/" /etc/php/7.3/fpm/pool.d/www.conf
+sed -i "s/group = www-data/group = www-data/" /etc/php/7.3/fpm/pool.d/www.conf
 
-sed -i "s/listen\.owner.*/listen.owner = vagrant/" /etc/php/7.3/fpm/pool.d/www.conf
-sed -i "s/listen\.group.*/listen.group = vagrant/" /etc/php/7.3/fpm/pool.d/www.conf
+sed -i "s/listen\.owner.*/listen.owner = www-data/" /etc/php/7.3/fpm/pool.d/www.conf
+sed -i "s/listen\.group.*/listen.group = www-data/" /etc/php/7.3/fpm/pool.d/www.conf
 sed -i "s/;listen\.mode.*/listen.mode = 0666/" /etc/php/7.3/fpm/pool.d/www.conf
 
-sed -i "s/user = www-data/user = vagrant/" /etc/php/7.1/fpm/pool.d/www.conf
-sed -i "s/group = www-data/group = vagrant/" /etc/php/7.1/fpm/pool.d/www.conf
+sed -i "s/user = www-data/user = www-data/" /etc/php/7.1/fpm/pool.d/www.conf
+sed -i "s/group = www-data/group = www-data/" /etc/php/7.1/fpm/pool.d/www.conf
 
-sed -i "s/listen\.owner.*/listen.owner = vagrant/" /etc/php/7.1/fpm/pool.d/www.conf
-sed -i "s/listen\.group.*/listen.group = vagrant/" /etc/php/7.1/fpm/pool.d/www.conf
+sed -i "s/listen\.owner.*/listen.owner = www-data/" /etc/php/7.1/fpm/pool.d/www.conf
+sed -i "s/listen\.group.*/listen.group = www-data/" /etc/php/7.1/fpm/pool.d/www.conf
 sed -i "s/;listen\.mode.*/listen.mode = 0666/" /etc/php/7.1/fpm/pool.d/www.conf
 
-sed -i "s/user = www-data/user = vagrant/" /etc/php/7.0/fpm/pool.d/www.conf
-sed -i "s/group = www-data/group = vagrant/" /etc/php/7.0/fpm/pool.d/www.conf
+sed -i "s/user = www-data/user = www-data/" /etc/php/7.0/fpm/pool.d/www.conf
+sed -i "s/group = www-data/group = www-data/" /etc/php/7.0/fpm/pool.d/www.conf
 
-sed -i "s/listen\.owner.*/listen.owner = vagrant/" /etc/php/7.0/fpm/pool.d/www.conf
-sed -i "s/listen\.group.*/listen.group = vagrant/" /etc/php/7.0/fpm/pool.d/www.conf
+sed -i "s/listen\.owner.*/listen.owner = www-data/" /etc/php/7.0/fpm/pool.d/www.conf
+sed -i "s/listen\.group.*/listen.group = www-data/" /etc/php/7.0/fpm/pool.d/www.conf
 sed -i "s/;listen\.mode.*/listen.mode = 0666/" /etc/php/7.0/fpm/pool.d/www.conf
 
-sed -i "s/user = www-data/user = vagrant/" /etc/php/5.6/fpm/pool.d/www.conf
-sed -i "s/group = www-data/group = vagrant/" /etc/php/5.6/fpm/pool.d/www.conf
+sed -i "s/user = www-data/user = www-data/" /etc/php/5.6/fpm/pool.d/www.conf
+sed -i "s/group = www-data/group = www-data/" /etc/php/5.6/fpm/pool.d/www.conf
 
-sed -i "s/listen\.owner.*/listen.owner = vagrant/" /etc/php/5.6/fpm/pool.d/www.conf
-sed -i "s/listen\.group.*/listen.group = vagrant/" /etc/php/5.6/fpm/pool.d/www.conf
+sed -i "s/listen\.owner.*/listen.owner = www-data/" /etc/php/5.6/fpm/pool.d/www.conf
+sed -i "s/listen\.group.*/listen.group = www-data/" /etc/php/5.6/fpm/pool.d/www.conf
 sed -i "s/;listen\.mode.*/listen.mode = 0666/" /etc/php/5.6/fpm/pool.d/www.conf
 
 service nginx restart
@@ -580,5 +580,5 @@ printf "\nPATH=\"$(sudo su - vagrant -c 'composer config -g home 2>/dev/null')/v
 
 #move every php version nginx config files to sites-enables folder
 
-mv php56.example.com /etc/nginx/sites-enabled/
-mv php72.example.com /etc/nginx/sites-enabled/
+#mv php56.example.com /etc/nginx/sites-enabled/
+#mv php72.example.com /etc/nginx/sites-enabled/
