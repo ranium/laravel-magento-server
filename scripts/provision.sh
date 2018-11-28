@@ -578,7 +578,22 @@ printf "\nPATH=\"$(sudo su - vagrant -c 'composer config -g home 2>/dev/null')/v
 /sbin/mkswap /var/swap.1
 /sbin/swapon /var/swap.1
 
+#create a directory to avoid further error in nginx conf
+
+mkdir /var/www/$1
+
 #move every php version nginx config files to sites-enables folder
 
-#mv php56.example.com /etc/nginx/sites-enabled/
-#mv php72.example.com /etc/nginx/sites-enabled/
+mv php56.example.com /etc/nginx/sites-available/
+mv php72.example.com /etc/nginx/sites-available/
+
+#create symlink to sites-enabled folder
+
+ln -s /etc/nginx/sites-available/php56.example.com /etc/nginx/sites-enabled/
+ln -s /etc/nginx/sites-available/php72.example.com /etc/nginx/sites-enabled/
+
+#check if it is all ok
+nginx -t
+
+printf "127.0.0.1  $1.php56.com" | tee -a /etc/hosts
+printf "127.0.0.1  $1.php72.com" | tee -a /etc/hosts
