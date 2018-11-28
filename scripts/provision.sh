@@ -593,7 +593,7 @@ ln -s /etc/nginx/sites-available/php56.example.com /etc/nginx/sites-enabled/
 ln -s /etc/nginx/sites-available/php72.example.com /etc/nginx/sites-enabled/
 
 #check if it is all ok
-nginx -t
+nano nginx -t
 
-printf "127.0.0.1  $1.php56.com" | tee -a /etc/hosts
-printf "127.0.0.1  $1.php72.com" | tee -a /etc/hosts
+sudo printf "127.0.0.1  $1.php56.com" | tee -a /etc/hosts
+sudo printf "127.0.0.1  $1.php72.com" | tee -a /etc/hosts
