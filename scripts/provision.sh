@@ -325,6 +325,73 @@ service php7.1-fpm restart
 service php7.0-fpm restart
 service php5.6-fpm restart
 
+#create a directory to avoid further error in nginx conf
+
+mkdir /var/www/$1
+
+#create nginx config files in sites-available
+
+sudo tee /etc/nginx/sites-available/php56.example.com << EOL
+server {
+       listen 80;
+       listen [::]:80;
+       # SSL CONFIGS
+       # listen 443 ssl;
+       # listen [::]:443 ssl;
+       # include snippets/self-signed.conf;
+       # include snippets/ssl-params.conf;
+
+        server_name ~^(?<subdomain>\w+)\.php56\.com\$;
+        root /var/www/\$subdomain;
+        index index.php;
+
+
+        location ~* \.php\$ {
+                # With php-fpm unix sockets
+                fastcgi_pass    unix:/run/php/php5.6-fpm.sock;
+                include         fastcgi_params;
+                fastcgi_param   SCRIPT_FILENAME    \$document_root\$fastcgi_script_name;
+                fastcgi_param   SCRIPT_NAME        \$fastcgi_script_name;
+        }
+}
+EOL
+
+sudo tee /etc/nginx/sites-available/php72.example.com << EOL
+server {
+       listen 80;
+       listen [::]:80;
+       # SSL CONFIGS
+       # listen 443 ssl;
+       # listen [::]:443 ssl;
+       # include snippets/self-signed.conf;
+       # include snippets/ssl-params.conf;
+
+        server_name ~^(?<subdomain>\w+)\.php72\.com\$;
+        root /var/www/\$subdomain;
+        index index.php;
+
+
+        location ~* \.php\$ {
+                # With php-fpm unix sockets
+                fastcgi_pass    unix:/run/php/php7.2-fpm.sock;
+                include         fastcgi_params;
+                fastcgi_param   SCRIPT_FILENAME    \$document_root\$fastcgi_script_name;
+                fastcgi_param   SCRIPT_NAME        \$fastcgi_script_name;
+        }
+}
+EOL
+
+#create symlink to sites-enabled folder
+
+ln -s /etc/nginx/sites-available/php56.example.com /etc/nginx/sites-enabled/
+ln -s /etc/nginx/sites-available/php72.example.com /etc/nginx/sites-enabled/
+
+#check if it is all ok
+sudo nginx -t
+
+sudo printf "127.0.0.1  $1.php56.com\n" | tee -a /etc/hosts
+sudo printf "127.0.0.1  $1.php72.com" | tee -a /etc/hosts
+
 # Add Vagrant User To WWW-Data
 
 usermod -a -G www-data vagrant
@@ -578,22 +645,4 @@ printf "\nPATH=\"$(sudo su - vagrant -c 'composer config -g home 2>/dev/null')/v
 /sbin/mkswap /var/swap.1
 /sbin/swapon /var/swap.1
 
-#create a directory to avoid further error in nginx conf
 
-mkdir /var/www/$1
-
-#move every php version nginx config files to sites-enables folder
-
-mv php56.example.com /etc/nginx/sites-available/
-mv php72.example.com /etc/nginx/sites-available/
-
-#create symlink to sites-enabled folder
-
-ln -s /etc/nginx/sites-available/php56.example.com /etc/nginx/sites-enabled/
-ln -s /etc/nginx/sites-available/php72.example.com /etc/nginx/sites-enabled/
-
-#check if it is all ok
-nano nginx -t
-
-sudo printf "127.0.0.1  $1.php56.com" | tee -a /etc/hosts
-sudo printf "127.0.0.1  $1.php72.com" | tee -a /etc/hosts
