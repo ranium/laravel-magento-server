@@ -389,6 +389,10 @@ ln -s /etc/nginx/sites-available/php72.example.com /etc/nginx/sites-enabled/
 #check if it is all ok
 sudo nginx -t
 
+sudo /etc/init.d/php5.6-fpm restart
+sudo /etc/init.d/php7.2-fpm restart
+sudo /etc/init.d/nginx restart
+
 sudo printf "127.0.0.1  $1.php56.com\n" | tee -a /etc/hosts
 sudo printf "127.0.0.1  $1.php72.com" | tee -a /etc/hosts
 
