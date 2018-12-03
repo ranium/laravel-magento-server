@@ -329,6 +329,13 @@ service php5.6-fpm restart
 
 mkdir /var/www/$1
 
+sudo tee /var/www/$1/index.php << EOL 
+<?php 
+echo "You are in Homestead Environment";
+phpinfo();
+?>
+EOL
+
 #create nginx config files in sites-available
 
 sudo tee /etc/nginx/sites-available/php56.example.com << EOL
@@ -383,8 +390,8 @@ EOL
 
 #create symlink to sites-enabled folder
 
-ln -s /etc/nginx/sites-available/php56.example.com /etc/nginx/sites-enabled/
-ln -s /etc/nginx/sites-available/php72.example.com /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/php56.example.com /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/php72.example.com /etc/nginx/sites-enabled/
 
 #check if it is all ok
 sudo nginx -t
