@@ -336,8 +336,7 @@ phpinfo();
 ?>
 EOL
 
-cd ..
-cd sample_config/
+cd .. && cd sample_config/
 
 #move magento's modified sample nginx file to /vae/www
 
@@ -447,10 +446,10 @@ EOL
 
 #create symlink to sites-enabled folder
 
-sudo ln -s /etc/nginx/sites-available/php56.example.com /etc/nginx/sites-enabled/
-sudo ln -s /etc/nginx/sites-available/php70.example.com /etc/nginx/sites-enabled/
-sudo ln -s /etc/nginx/sites-available/php71.example.com /etc/nginx/sites-enabled/
-sudo ln -s /etc/nginx/sites-available/php72.example.com /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/php56.nginx.com /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/php70.nginx.com /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/php71.nginx.com /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/php72.nginx.com /etc/nginx/sites-enabled/
 
 #check if it is all ok
 sudo nginx -t
