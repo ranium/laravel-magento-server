@@ -338,7 +338,7 @@ EOL
 
 #create nginx config files in sites-available
 
-sudo tee /etc/nginx/sites-available/php56.example.com << EOL
+sudo tee /etc/nginx/sites-available/php56.nginx.com << EOL
 server {
        listen 80;
        listen [::]:80;
@@ -349,10 +349,9 @@ server {
        # include snippets/ssl-params.conf;
 
         server_name ~^(?<subdomain>\w+)\.php56\.com\$;
-        root /var/www/\$subdomain;
-        index index.php;
-
-
+        set $MAGE_ROOT /var/www/$subdomain;
+        set $MAGE_MODE developer;
+        
         location ~* \.php\$ {
                 # With php-fpm unix sockets
                 fastcgi_pass    unix:/run/php/php5.6-fpm.sock;
@@ -360,10 +359,61 @@ server {
                 fastcgi_param   SCRIPT_FILENAME    \$document_root\$fastcgi_script_name;
                 fastcgi_param   SCRIPT_NAME        \$fastcgi_script_name;
         }
+        include /var/www/nginx.conf.sample;
 }
 EOL
 
-sudo tee /etc/nginx/sites-available/php72.example.com << EOL
+sudo tee /etc/nginx/sites-available/php70.nginx.com << EOL
+server {
+       listen 80;
+       listen [::]:80;
+       # SSL CONFIGS
+       # listen 443 ssl;
+       # listen [::]:443 ssl;
+       # include snippets/self-signed.conf;
+       # include snippets/ssl-params.conf;
+
+        server_name ~^(?<subdomain>\w+)\.php70\.com\$;
+        set $MAGE_ROOT /var/www/$subdomain;
+        set $MAGE_MODE developer;
+        
+        location ~* \.php\$ {
+                # With php-fpm unix sockets
+                fastcgi_pass    unix:/run/php/php7.0-fpm.sock;
+                include         fastcgi_params;
+                fastcgi_param   SCRIPT_FILENAME    \$document_root\$fastcgi_script_name;
+                fastcgi_param   SCRIPT_NAME        \$fastcgi_script_name;
+        }
+        include /var/www/nginx.conf.sample;
+}
+EOL
+
+sudo tee /etc/nginx/sites-available/php71.nginx.com << EOL
+server {
+       listen 80;
+       listen [::]:80;
+       # SSL CONFIGS
+       # listen 443 ssl;
+       # listen [::]:443 ssl;
+       # include snippets/self-signed.conf;
+       # include snippets/ssl-params.conf;
+
+        server_name ~^(?<subdomain>\w+)\.php71\.com\$;
+        set $MAGE_ROOT /var/www/$subdomain;
+        set $MAGE_MODE developer;
+        
+        location ~* \.php\$ {
+                # With php-fpm unix sockets
+                fastcgi_pass    unix:/run/php/php7.1-fpm.sock;
+                include         fastcgi_params;
+                fastcgi_param   SCRIPT_FILENAME    \$document_root\$fastcgi_script_name;
+                fastcgi_param   SCRIPT_NAME        \$fastcgi_script_name;
+        }
+        include /var/www/nginx.conf.sample;
+}
+EOL
+
+sudo tee /etc/nginx/sites-available/php72.nginx.com << EOL
 server {
        listen 80;
        listen [::]:80;
@@ -374,9 +424,8 @@ server {
        # include snippets/ssl-params.conf;
 
         server_name ~^(?<subdomain>\w+)\.php72\.com\$;
-        root /var/www/\$subdomain;
-        index index.php;
-
+        set $MAGE_ROOT /var/www/$subdomain;
+        set $MAGE_MODE developer;
 
         location ~* \.php\$ {
                 # With php-fpm unix sockets
@@ -385,23 +434,30 @@ server {
                 fastcgi_param   SCRIPT_FILENAME    \$document_root\$fastcgi_script_name;
                 fastcgi_param   SCRIPT_NAME        \$fastcgi_script_name;
         }
+        include /var/www/nginx.conf.sample;
 }
 EOL
 
 #create symlink to sites-enabled folder
 
 sudo ln -s /etc/nginx/sites-available/php56.example.com /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/php70.example.com /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/php71.example.com /etc/nginx/sites-enabled/
 sudo ln -s /etc/nginx/sites-available/php72.example.com /etc/nginx/sites-enabled/
 
 #check if it is all ok
 sudo nginx -t
 
 sudo /etc/init.d/php5.6-fpm restart
+sudo /etc/init.d/php7.0-fpm restart
+sudo /etc/init.d/php7.1-fpm restart
 sudo /etc/init.d/php7.2-fpm restart
 sudo /etc/init.d/nginx restart
 
 sudo printf "127.0.0.1  $1.php56.com\n" | tee -a /etc/hosts
-sudo printf "127.0.0.1  $1.php72.com" | tee -a /etc/hosts
+sudo printf "127.0.0.1  $1.php70.com\n" | tee -a /etc/hosts
+sudo printf "127.0.0.1  $1.php71.com\n" | tee -a /etc/hosts
+sudo printf "127.0.0.1  $1.php72.com\n" | tee -a /etc/hosts
 
 # Add Vagrant User To WWW-Data
 
