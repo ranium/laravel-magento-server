@@ -336,6 +336,13 @@ phpinfo();
 ?>
 EOL
 
+cd ..
+cd sample_config/
+
+#move magento's modified sample nginx file to /vae/www
+
+sudo mv nginx.conf.sample /var/www/
+
 #create nginx config files in sites-available
 
 sudo tee /etc/nginx/sites-available/php56.nginx.com << EOL
