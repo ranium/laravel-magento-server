@@ -336,7 +336,8 @@ phpinfo();
 ?>
 EOL
 
-cd .. && cd sample_config/
+cd .. 
+cd sample_config/
 
 #move magento's modified sample nginx file to /vae/www
 
@@ -355,8 +356,8 @@ server {
        # include snippets/ssl-params.conf;
 
         server_name ~^(?<subdomain>\w+)\.backendphp56\.com\$;
-        set $MAGE_ROOT /var/www/$subdomain;
-        set $MAGE_MODE developer;
+        set \$MAGE_ROOT /var/www/\$subdomain;
+        set \$MAGE_MODE developer;
         
         location ~* \.php\$ {
                 # With php-fpm unix sockets
@@ -380,8 +381,8 @@ server {
        # include snippets/ssl-params.conf;
 
         server_name ~^(?<subdomain>\w+)\.backendphp70\.com\$;
-        set $MAGE_ROOT /var/www/$subdomain;
-        set $MAGE_MODE developer;
+        set \$MAGE_ROOT /var/www/\$subdomain;
+        set \$MAGE_MODE developer;
         
         location ~* \.php\$ {
                 # With php-fpm unix sockets
@@ -405,8 +406,8 @@ server {
        # include snippets/ssl-params.conf;
 
         server_name ~^(?<subdomain>\w+)\.backendphp71\.com\$;
-        set $MAGE_ROOT /var/www/$subdomain;
-        set $MAGE_MODE developer;
+        set \$MAGE_ROOT /var/www/\$subdomain;
+        set \$MAGE_MODE developer;
         
         location ~* \.php\$ {
                 # With php-fpm unix sockets
@@ -430,8 +431,8 @@ server {
        # include snippets/ssl-params.conf;
 
         server_name ~^(?<subdomain>\w+)\.backendphp72\.com\$;
-        set $MAGE_ROOT /var/www/$subdomain;
-        set $MAGE_MODE developer;
+        set \$MAGE_ROOT /var/www/\$subdomain;
+        set \$MAGE_MODE developer;
 
         location ~* \.php\$ {
                 # With php-fpm unix sockets
@@ -464,6 +465,11 @@ sudo printf "127.0.0.1  $1.backendphp56.com\n" | tee -a /etc/hosts
 sudo printf "127.0.0.1  $1.backendphp70.com\n" | tee -a /etc/hosts
 sudo printf "127.0.0.1  $1.backendphp71.com\n" | tee -a /etc/hosts
 sudo printf "127.0.0.1  $1.backendphp72.com\n" | tee -a /etc/hosts
+
+# Install Mcrypt module
+
+sudo apt-get install mcrypt php7.0-mcrypt php7.1-mcrypt php5.6-mcrypt
+
 
 # Add Vagrant User To WWW-Data
 
