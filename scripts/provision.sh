@@ -344,7 +344,7 @@ sudo mv nginx.conf.sample /var/www/
 
 #create nginx config files in sites-available
 
-sudo tee /etc/nginx/sites-available/php56.nginx.com << EOL
+sudo tee /etc/nginx/sites-available/backend.php56.com << EOL
 server {
        listen 80;
        listen [::]:80;
@@ -354,7 +354,7 @@ server {
        # include snippets/self-signed.conf;
        # include snippets/ssl-params.conf;
 
-        server_name ~^(?<subdomain>\w+)\.php56\.com\$;
+        server_name ~^(?<subdomain>\w+)\.backendphp56\.com\$;
         set $MAGE_ROOT /var/www/$subdomain;
         set $MAGE_MODE developer;
         
@@ -369,7 +369,7 @@ server {
 }
 EOL
 
-sudo tee /etc/nginx/sites-available/php70.nginx.com << EOL
+sudo tee /etc/nginx/sites-available/backend.php70.com << EOL
 server {
        listen 80;
        listen [::]:80;
@@ -379,7 +379,7 @@ server {
        # include snippets/self-signed.conf;
        # include snippets/ssl-params.conf;
 
-        server_name ~^(?<subdomain>\w+)\.php70\.com\$;
+        server_name ~^(?<subdomain>\w+)\.backendphp70\.com\$;
         set $MAGE_ROOT /var/www/$subdomain;
         set $MAGE_MODE developer;
         
@@ -394,7 +394,7 @@ server {
 }
 EOL
 
-sudo tee /etc/nginx/sites-available/php71.nginx.com << EOL
+sudo tee /etc/nginx/sites-available/backend.php71.com << EOL
 server {
        listen 80;
        listen [::]:80;
@@ -404,7 +404,7 @@ server {
        # include snippets/self-signed.conf;
        # include snippets/ssl-params.conf;
 
-        server_name ~^(?<subdomain>\w+)\.php71\.com\$;
+        server_name ~^(?<subdomain>\w+)\.backendphp71\.com\$;
         set $MAGE_ROOT /var/www/$subdomain;
         set $MAGE_MODE developer;
         
@@ -419,7 +419,7 @@ server {
 }
 EOL
 
-sudo tee /etc/nginx/sites-available/php72.nginx.com << EOL
+sudo tee /etc/nginx/sites-available/backend.php72.com << EOL
 server {
        listen 80;
        listen [::]:80;
@@ -429,7 +429,7 @@ server {
        # include snippets/self-signed.conf;
        # include snippets/ssl-params.conf;
 
-        server_name ~^(?<subdomain>\w+)\.php72\.com\$;
+        server_name ~^(?<subdomain>\w+)\.backendphp72\.com\$;
         set $MAGE_ROOT /var/www/$subdomain;
         set $MAGE_MODE developer;
 
@@ -446,10 +446,10 @@ EOL
 
 #create symlink to sites-enabled folder
 
-sudo ln -s /etc/nginx/sites-available/php56.nginx.com /etc/nginx/sites-enabled/
-sudo ln -s /etc/nginx/sites-available/php70.nginx.com /etc/nginx/sites-enabled/
-sudo ln -s /etc/nginx/sites-available/php71.nginx.com /etc/nginx/sites-enabled/
-sudo ln -s /etc/nginx/sites-available/php72.nginx.com /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/backend.php56.com /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/backend.php70.com /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/backend.php71.com /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/backend.php72.com /etc/nginx/sites-enabled/
 
 #check if it is all ok
 sudo nginx -t
@@ -460,10 +460,10 @@ sudo /etc/init.d/php7.1-fpm restart
 sudo /etc/init.d/php7.2-fpm restart
 sudo /etc/init.d/nginx restart
 
-sudo printf "127.0.0.1  $1.php56.com\n" | tee -a /etc/hosts
-sudo printf "127.0.0.1  $1.php70.com\n" | tee -a /etc/hosts
-sudo printf "127.0.0.1  $1.php71.com\n" | tee -a /etc/hosts
-sudo printf "127.0.0.1  $1.php72.com\n" | tee -a /etc/hosts
+sudo printf "127.0.0.1  $1.backendphp56.com\n" | tee -a /etc/hosts
+sudo printf "127.0.0.1  $1.backendphp70.com\n" | tee -a /etc/hosts
+sudo printf "127.0.0.1  $1.backendphp71.com\n" | tee -a /etc/hosts
+sudo printf "127.0.0.1  $1.backendphp72.com\n" | tee -a /etc/hosts
 
 # Add Vagrant User To WWW-Data
 
