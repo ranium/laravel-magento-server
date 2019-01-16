@@ -17,20 +17,8 @@ locale-gen en_US.UTF-8
 # Install Some PPAs
 
 apt-get install -y software-properties-common curl
-
 apt-add-repository ppa:nginx/development -y
-#apt-add-repository ppa:chris-lea/redis-server -y
 apt-add-repository ppa:ondrej/php -y
-
-#curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
-#curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
-
-# gpg: key 5072E1F5: public key "MySQL Release Engineering <mysql-build@oss.oracle.com>" imported
-# apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys 5072E1F5
-# sh -c 'echo "deb http://repo.mysql.com/apt/ubuntu/ xenial mysql-5.7" >> /etc/apt/sources.list.d/mysql.list'
-
-#echo 'deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main' >> /etc/apt/sources.list.d/pgdg.list
-#wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 
 curl -s https://packagecloud.io/gpg.key | apt-key add -
 echo "deb http://packages.blackfire.io/debian any main" | tee /etc/apt/sources.list.d/blackfire.list
@@ -595,6 +583,7 @@ sudo /etc/init.d/php5.6-fpm restart
 sudo /etc/init.d/php7.0-fpm restart
 sudo /etc/init.d/php7.1-fpm restart
 sudo /etc/init.d/php7.2-fpm restart
+sudo /etc/init.d/php7.3-fpm restart
 sudo /etc/init.d/nginx restart
 
 sudo printf "127.0.0.1  $1.backendphp56.com\n" | tee -a /etc/hosts
@@ -773,15 +762,6 @@ curl --silent --location https://drupalconsole.com/installer --output drupal.pha
 chmod +x drupal.phar
 mv drupal.phar /usr/local/bin/drupal
 
-# Install oh-my-zsh
-
-git clone git://github.com/robbyrussell/oh-my-zsh.git /home/vagrant/.oh-my-zsh
-cp /home/vagrant/.oh-my-zsh/templates/zshrc.zsh-template /home/vagrant/.zshrc
-printf "\nsource ~/.bash_aliases\n" | tee -a /home/vagrant/.zshrc
-printf "\nsource ~/.profile\n" | tee -a /home/vagrant/.zshrc
-chown -R vagrant:vagrant /home/vagrant/.oh-my-zsh
-chown vagrant:vagrant /home/vagrant/.zshrc
-
 # Install Golang
 
 golangVersion="1.11.2"
@@ -790,7 +770,7 @@ tar -C /usr/local -xzf golang.tar.gz
 printf "\nPATH=\"/usr/local/go/bin:\$PATH\"\n" | tee -a /home/vagrant/.profile
 rm -rf golang.tar.gz
 
-# Install & Configure Postfix]
+# Install & Configure Postfix
 
 echo "postfix postfix/mailname string homestead.test" | debconf-set-selections
 echo "postfix postfix/main_mailer_type string 'Internet Site'" | debconf-set-selections
