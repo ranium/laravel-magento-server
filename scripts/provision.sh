@@ -736,18 +736,6 @@ echo "deb https://dist.crystal-lang.org/apt crystal main" | tee /etc/apt/sources
 apt-get update
 apt-get install -y crystal
 
-# Install Lucky Framework for Crystal
-
-wget https://github.com/luckyframework/lucky_cli/archive/v0.11.0.tar.gz
-tar -zxvf v0.11.0.tar.gz
-cd lucky_cli-0.11.0
-shards install
-crystal build src/lucky.cr --release --no-debug
-mv lucky /usr/local/bin/.
-cd /home/vagrant
-rm -rf lucky_cli-0.11.0
-rm -rf v0.11.0.tar.gz
-
 # Install Heroku CLI
 
 curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
