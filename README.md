@@ -57,8 +57,8 @@ You'll get the idea by referring following table:-
 
 
 
-### Libraries
-Following is the list of Libraries and Packages which gets install along with environment setup.
+### Libraries & Packages
+Following is the list of Libraries & Packages which gets install along with environment setup.
 
 * [Nginx]
 * [Node]
