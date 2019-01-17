@@ -1,6 +1,6 @@
 # Laravel|Magento server
 A simple script which helps you quickly setup Laravel and Magento environment on your **local machine**. 
-No need to run your project on Homestead's virtual environment, which is Tedious and Exhaustive.
+This script is inspired by Homestead and comes in handy if you want to run a dedicated server instead of a virtual machine.
 
 ## Developed By :computer:
 [![N|Ranium](https://d1vxlv5w7jsf3o.cloudfront.net/wp-content/uploads/2018/10/24121043/ranium-logo-black.png)](https://ranium.in/)
@@ -83,7 +83,7 @@ Following is the list of Libraries & Packages which gets install along with envi
 If you have any issue or idea which you want to share, [please open an issue].
 If you'd like to contribute, please fork the repository. Pull requests are warmly welcome.
 
-### Contributors :stars:
+### Credits :stars:
 
 This script is heavily inspired by [Laravel-Settler], most of the script content is copied from that only.
  
