@@ -76,9 +76,16 @@ Following is the list of Libraries & Packages which gets install along with envi
 * [Postfix]
 * [GoLang]
 
-### Contributing :stars:
- 
+### Contributing 
 
+If you have any issue or idea which you want to share, [please open an issue].
+If you'd like to contribute, please fork the repository. Pull requests are warmly welcome.
+
+### Contributors :stars:
+
+This script is heavily inspired by [Laravel-Settler], most of the script content is copied from that only.
+ 
+### License
 
 
 
@@ -117,7 +124,8 @@ Following is the list of Libraries & Packages which gets install along with envi
    [Ruby]: <https://www.ruby-lang.org/en/>
    [Postfix]: <http://www.postfix.org/>
    [GoLang]: <https://golang.org/>
-
+   [please open an issue]: <https://github.com/ranium/laravel-magento-server/issues>
+   [Laravel-Settler]: <https://github.com/laravel/settler>
 
 
 
