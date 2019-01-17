@@ -49,8 +49,8 @@ You'll get the idea by referring following table:-
 
 | PHP Version | Magento Domain | Laravel Domain | 
 | ------ | ------ | ----- |
-| 5.6 | <project-name>.backendphp56.com | <project-name>.frontendphp56.co.uk
-| 7.0 | <project-name>.backendphp70.com | <project-name>.frontendphp70.co.uk
-| 7.1 | <project-name>.backendphp71.com | <project-name>.frontendphp71.co.uk
-| 7.2 | <project-name>.backendphp72.com | <project-name>.frontendphp72.co.uk
-| 7.3 | <project-name>.backendphp73.com | <project-name>.frontendphp73.co.uk
+| 5.6 | {project-name}.backendphp56.com | {project-name}.frontendphp56.co.uk
+| 7.0 | {project-name}.backendphp70.com | {project-name}.frontendphp70.co.uk
+| 7.1 | {project-name}.backendphp71.com | {project-name}.frontendphp71.co.uk
+| 7.2 | {project-name}.backendphp72.com | {project-name}.frontendphp72.co.uk
+| 7.3 | {project-name}.backendphp73.com | {project-name}.frontendphp73.co.uk
