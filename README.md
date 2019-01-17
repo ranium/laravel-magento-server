@@ -76,8 +76,8 @@ Following is the list of Libraries & Packages which gets install along with envi
 * [Postfix]
 * [GoLang]
 
-### Contributing 
-:stars: 
+### Contributing :stars:
+ 
 
 
 
