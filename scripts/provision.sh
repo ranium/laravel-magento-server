@@ -725,10 +725,6 @@ echo "deb https://dist.crystal-lang.org/apt crystal main" | tee /etc/apt/sources
 apt-get update
 apt-get install -y crystal
 
-# Install Heroku CLI
-
-curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
-
 # Install ngrok
 
 wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
@@ -748,19 +744,6 @@ rm -rf flyway-commandline-4.2.0-linux-x64.tar.gz
 curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 chmod +x wp-cli.phar
 mv wp-cli.phar /usr/local/bin/wp
-
-# Install Drush Launcher.
-
-curl --silent --location https://github.com/drush-ops/drush-launcher/releases/download/0.6.0/drush.phar --output drush.phar
-chmod +x drush.phar
-mv drush.phar /usr/local/bin/drush
-drush self-update
-
-# Install Drupal Console Launcher.
-
-curl --silent --location https://drupalconsole.com/installer --output drupal.phar
-chmod +x drupal.phar
-mv drupal.phar /usr/local/bin/drupal
 
 # Install Golang
 
@@ -787,13 +770,6 @@ sudo apt-get -y install apt-transport-https
 sudo apt-get update
 sudo apt-get -y install dotnet-sdk-2.1
 sudo rm -rf packages-microsoft-prod.deb
-
-# Update / Override motd
-
-sed -i "s/motd.ubuntu.com/homestead.joeferguson.me/g" /etc/default/motd-news
-rm -rf /etc/update-motd.d/10-help-text
-rm -rf /etc/update-motd.d/50-landscape-sysinfo
-service motd-news restart
 
 # Install Ruby & RVM
 
