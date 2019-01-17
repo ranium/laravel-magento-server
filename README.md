@@ -54,3 +54,69 @@ You'll get the idea by referring following table:-
 | 7.1 | {project-name}.backendphp71.com | {project-name}.frontendphp71.co.uk
 | 7.2 | {project-name}.backendphp72.com | {project-name}.frontendphp72.co.uk
 | 7.3 | {project-name}.backendphp73.com | {project-name}.frontendphp73.co.uk
+
+
+
+### Libraries
+Following is the list of Libraries and Packages which gets install along with environment setup.
+
+* [Nginx]
+* [Node]
+* [SQLite]
+* [MySQL]
+* [PostgreSQL]
+* [Blackfire]
+* [Zend Z-Ray]
+* [Memcached]
+* [MailHog]
+* [Supervisor]
+* [Ngrok]
+* [FlyWay]
+* [Ruby]
+* [Postfix]
+* [GoLang]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   [Nginx]: <https://www.nginx.com/>
+   [Node]: <https://nodejs.org/en/>
+   [SQLite]: <https://www.sqlite.org/index.html>
+   [MySQL]: <https://www.mysql.com/>
+   [PostgreSQL]: <https://www.postgresql.org/>
+   [Blackfire]: <https://blackfire.io/>
+   [Zend Z-Ray]: <http://www.zend.com/en/products/server/z-ray>
+   [Memcached]: <https://memcached.org/>
+   [MailHog]: <https://github.com/mailhog/MailHog>
+   [Supervisor]: <http://supervisord.org/>
+   [Ngrok]: <https://ngrok.com/>
+   [FlyWay]: <https://flywaydb.org/>
+   [Ruby]: <https://www.ruby-lang.org/en/>
+   [Postfix]: <http://www.postfix.org/>
+   [GoLang]: <https://golang.org/>
+
+
+
+
