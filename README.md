@@ -89,6 +89,7 @@ This script is heavily inspired by [Laravel-Settler], most of the script content
  
 ### License
 
+MIT
 
 
 
