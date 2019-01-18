@@ -17,20 +17,8 @@ locale-gen en_US.UTF-8
 # Install Some PPAs
 
 apt-get install -y software-properties-common curl
-
 apt-add-repository ppa:nginx/development -y
-#apt-add-repository ppa:chris-lea/redis-server -y
 apt-add-repository ppa:ondrej/php -y
-
-#curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
-#curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list > /etc/apt/sources.list.d/mssql-release.list
-
-# gpg: key 5072E1F5: public key "MySQL Release Engineering <mysql-build@oss.oracle.com>" imported
-# apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys 5072E1F5
-# sh -c 'echo "deb http://repo.mysql.com/apt/ubuntu/ xenial mysql-5.7" >> /etc/apt/sources.list.d/mysql.list'
-
-#echo 'deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main' >> /etc/apt/sources.list.d/pgdg.list
-#wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 
 curl -s https://packagecloud.io/gpg.key | apt-key add -
 echo "deb http://packages.blackfire.io/debian any main" | tee /etc/apt/sources.list.d/blackfire.list
@@ -595,6 +583,7 @@ sudo /etc/init.d/php5.6-fpm restart
 sudo /etc/init.d/php7.0-fpm restart
 sudo /etc/init.d/php7.1-fpm restart
 sudo /etc/init.d/php7.2-fpm restart
+sudo /etc/init.d/php7.3-fpm restart
 sudo /etc/init.d/nginx restart
 
 sudo printf "127.0.0.1  $1.backendphp56.com\n" | tee -a /etc/hosts
@@ -736,22 +725,6 @@ echo "deb https://dist.crystal-lang.org/apt crystal main" | tee /etc/apt/sources
 apt-get update
 apt-get install -y crystal
 
-# Install Lucky Framework for Crystal
-
-wget https://github.com/luckyframework/lucky_cli/archive/v0.11.0.tar.gz
-tar -zxvf v0.11.0.tar.gz
-cd lucky_cli-0.11.0
-shards install
-crystal build src/lucky.cr --release --no-debug
-mv lucky /usr/local/bin/.
-cd /home/vagrant
-rm -rf lucky_cli-0.11.0
-rm -rf v0.11.0.tar.gz
-
-# Install Heroku CLI
-
-curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
-
 # Install ngrok
 
 wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
@@ -772,28 +745,6 @@ curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.pha
 chmod +x wp-cli.phar
 mv wp-cli.phar /usr/local/bin/wp
 
-# Install Drush Launcher.
-
-curl --silent --location https://github.com/drush-ops/drush-launcher/releases/download/0.6.0/drush.phar --output drush.phar
-chmod +x drush.phar
-mv drush.phar /usr/local/bin/drush
-drush self-update
-
-# Install Drupal Console Launcher.
-
-curl --silent --location https://drupalconsole.com/installer --output drupal.phar
-chmod +x drupal.phar
-mv drupal.phar /usr/local/bin/drupal
-
-# Install oh-my-zsh
-
-git clone git://github.com/robbyrussell/oh-my-zsh.git /home/vagrant/.oh-my-zsh
-cp /home/vagrant/.oh-my-zsh/templates/zshrc.zsh-template /home/vagrant/.zshrc
-printf "\nsource ~/.bash_aliases\n" | tee -a /home/vagrant/.zshrc
-printf "\nsource ~/.profile\n" | tee -a /home/vagrant/.zshrc
-chown -R vagrant:vagrant /home/vagrant/.oh-my-zsh
-chown vagrant:vagrant /home/vagrant/.zshrc
-
 # Install Golang
 
 golangVersion="1.11.2"
@@ -802,7 +753,7 @@ tar -C /usr/local -xzf golang.tar.gz
 printf "\nPATH=\"/usr/local/go/bin:\$PATH\"\n" | tee -a /home/vagrant/.profile
 rm -rf golang.tar.gz
 
-# Install & Configure Postfix]
+# Install & Configure Postfix
 
 echo "postfix postfix/mailname string homestead.test" | debconf-set-selections
 echo "postfix postfix/main_mailer_type string 'Internet Site'" | debconf-set-selections
@@ -819,13 +770,6 @@ sudo apt-get -y install apt-transport-https
 sudo apt-get update
 sudo apt-get -y install dotnet-sdk-2.1
 sudo rm -rf packages-microsoft-prod.deb
-
-# Update / Override motd
-
-sed -i "s/motd.ubuntu.com/homestead.joeferguson.me/g" /etc/default/motd-news
-rm -rf /etc/update-motd.d/10-help-text
-rm -rf /etc/update-motd.d/50-landscape-sysinfo
-service motd-news restart
 
 # Install Ruby & RVM
 
