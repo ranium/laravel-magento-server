@@ -367,13 +367,26 @@ server {
     index  index.php index.html index.htm;
 
     location / {
-        try_files \$uri \$uri/ /index.php\$query_string;
+        try_files \$uri \$uri/ /index.php\$is_args\$query_string;
+        if (\$request_uri ~* "^(.*/)index\.php(/?)(.*)") {
+               return 301  http://\$server_name\$request_uri;
         }
+    }
 
     location ~ \.php\$ {
-       include snippets/fastcgi-php.conf;
+       try_files \$uri =404;
+       fastcgi_split_path_info ^(.+\.php)(/.+)\$;
+       fastcgi_index index.php;
+       fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+       fastcgi_param SCRIPT_NAME \$fastcgi_script_name;
+       include fastcgi_params;
+
+       fastcgi_buffers 8 128k; # increase the buffer size for PHP-FPM
+       fastcgi_buffer_size 128k; # increase the buffer size for PHP-FPM
+       fastcgi_connect_timeout 100;
+       fastcgi_send_timeout 3m;
+       fastcgi_read_timeout 3m;
        fastcgi_pass    unix:/run/php/php5.6-fpm.sock;
-       fastcgi_param   SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
    }
 
 }
@@ -413,13 +426,26 @@ server {
     index  index.php index.html index.htm;
 
     location / {
-        try_files \$uri \$uri/ /index.php\$query_string;
+        try_files \$uri \$uri/ /index.php\$is_args\$query_string;
+        if (\$request_uri ~* "^(.*/)index\.php(/?)(.*)") {
+               return 301  http://\$server_name\$request_uri;
         }
+    }
 
     location ~ \.php\$ {
-       include snippets/fastcgi-php.conf;
+       try_files \$uri =404;
+       fastcgi_split_path_info ^(.+\.php)(/.+)\$;
+       fastcgi_index index.php;
+       fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+       fastcgi_param SCRIPT_NAME \$fastcgi_script_name;
+       include fastcgi_params;
+
+       fastcgi_buffers 8 128k; # increase the buffer size for PHP-FPM
+       fastcgi_buffer_size 128k; # increase the buffer size for PHP-FPM
+       fastcgi_connect_timeout 100;
+       fastcgi_send_timeout 3m;
+       fastcgi_read_timeout 3m;
        fastcgi_pass    unix:/run/php/php7.0-fpm.sock;
-       fastcgi_param   SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
    }
 
 }
@@ -459,13 +485,26 @@ server {
     index  index.php index.html index.htm;
 
     location / {
-        try_files \$uri \$uri/ /index.php\$query_string;
+        try_files \$uri \$uri/ /index.php\$is_args\$query_string;
+        if (\$request_uri ~* "^(.*/)index\.php(/?)(.*)") {
+               return 301  http://\$server_name\$request_uri;
         }
+    }
 
     location ~ \.php\$ {
-       include snippets/fastcgi-php.conf;
+       try_files \$uri =404;
+       fastcgi_split_path_info ^(.+\.php)(/.+)\$;
+       fastcgi_index index.php;
+       fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+       fastcgi_param SCRIPT_NAME \$fastcgi_script_name;
+       include fastcgi_params;
+
+       fastcgi_buffers 8 128k; # increase the buffer size for PHP-FPM
+       fastcgi_buffer_size 128k; # increase the buffer size for PHP-FPM
+       fastcgi_connect_timeout 100;
+       fastcgi_send_timeout 3m;
+       fastcgi_read_timeout 3m;
        fastcgi_pass    unix:/run/php/php7.1-fpm.sock;
-       fastcgi_param   SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
    }
 
 }
@@ -505,13 +544,26 @@ server {
     index  index.php index.html index.htm;
 
     location / {
-        try_files \$uri \$uri/ /index.php\$query_string;
+        try_files \$uri \$uri/ /index.php\$is_args\$query_string;
+        if (\$request_uri ~* "^(.*/)index\.php(/?)(.*)") {
+               return 301  http://\$server_name\$request_uri;
         }
+    }
 
     location ~ \.php\$ {
-       include snippets/fastcgi-php.conf;
+       try_files \$uri =404;
+       fastcgi_split_path_info ^(.+\.php)(/.+)\$;
+       fastcgi_index index.php;
+       fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+       fastcgi_param SCRIPT_NAME \$fastcgi_script_name;
+       include fastcgi_params;
+
+       fastcgi_buffers 8 128k; # increase the buffer size for PHP-FPM
+       fastcgi_buffer_size 128k; # increase the buffer size for PHP-FPM
+       fastcgi_connect_timeout 100;
+       fastcgi_send_timeout 3m;
+       fastcgi_read_timeout 3m;
        fastcgi_pass    unix:/run/php/php7.2-fpm.sock;
-       fastcgi_param   SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
    }
 
 }
@@ -551,13 +603,26 @@ server {
     index  index.php index.html index.htm;
 
     location / {
-        try_files \$uri \$uri/ /index.php\$query_string;
+        try_files \$uri \$uri/ /index.php\$is_args\$query_string;
+        if (\$request_uri ~* "^(.*/)index\.php(/?)(.*)") {
+               return 301  http://\$server_name\$request_uri;
         }
+    }
 
     location ~ \.php\$ {
-       include snippets/fastcgi-php.conf;
+       try_files \$uri =404;
+       fastcgi_split_path_info ^(.+\.php)(/.+)\$;
+       fastcgi_index index.php;
+       fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+       fastcgi_param SCRIPT_NAME \$fastcgi_script_name;
+       include fastcgi_params;
+
+       fastcgi_buffers 8 128k; # increase the buffer size for PHP-FPM
+       fastcgi_buffer_size 128k; # increase the buffer size for PHP-FPM
+       fastcgi_connect_timeout 100;
+       fastcgi_send_timeout 3m;
+       fastcgi_read_timeout 3m;
        fastcgi_pass    unix:/run/php/php7.3-fpm.sock;
-       fastcgi_param   SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
    }
 
 }
