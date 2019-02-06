@@ -19,8 +19,7 @@ This script is inspired by Homestead and comes in handy if you want to run a ded
 First, clone the project from github, then 
 
 ```sh
-$ cd laravel-magento-server
-$ sudo sh scripts/provision.sh <sample_project_name_to_test>
+$ cd laravel-magento-server/scripts && sudo sh provision.sh <sample_project_name_to_test>
 ```
 Let the script install all the packages for you which are required to start working with Laravel/Magento.
 
