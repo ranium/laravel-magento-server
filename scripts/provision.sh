@@ -331,9 +331,11 @@ cd sample_config/
 
 sudo mv nginx.conf.sample /var/www/
 
-#create nginx config files in sites-available
+createBackendConfigs(){
 
-sudo tee /etc/nginx/sites-available/backend.php56.com << EOL
+#create nginx config files in sites-available for Backend(Magento)
+
+sudo tee /etc/nginx/sites-available/$1.com << EOL
 server {
        listen 80;
        listen [::]:80;
@@ -343,13 +345,13 @@ server {
        # include snippets/self-signed.conf;
        # include snippets/ssl-params.conf;
 
-        server_name ~^(?<subdomain>\w+)\.backendphp56\.com\$;
+        server_name ~^(?<subdomain>\w+)\.$2\.com\$;
         set \$MAGE_ROOT /var/www/\$subdomain;
         set \$MAGE_MODE developer;
         
         location ~* \.php\$ {
                 # With php-fpm unix sockets
-                fastcgi_pass    unix:/run/php/php5.6-fpm.sock;
+                fastcgi_pass    unix:/run/php/$3-fpm.sock;
                 include         fastcgi_params;
                 fastcgi_param   SCRIPT_FILENAME    \$document_root\$fastcgi_script_name;
                 fastcgi_param   SCRIPT_NAME        \$fastcgi_script_name;
@@ -357,224 +359,127 @@ server {
         include /var/www/nginx.conf.sample;
 }
 EOL
-
-sudo tee /etc/nginx/sites-available/frontend.php56.com << EOL
-server {
-    listen 80;
-    listen [::]:80;
-    server_name ~^(?<subdomain>\w+)\.frontendphp56\.co\.uk\$;
-    root /var/www/\$subdomain/public;
-    index  index.php index.html index.htm;
-
-    location / {
-        try_files \$uri \$uri/ /index.php\$query_string;
-        }
-
-    location ~ \.php\$ {
-       include snippets/fastcgi-php.conf;
-       fastcgi_pass    unix:/run/php/php5.6-fpm.sock;
-       fastcgi_param   SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
-   }
-
-}
-EOL
-
-sudo tee /etc/nginx/sites-available/backend.php70.com << EOL
-server {
-       listen 80;
-       listen [::]:80;
-       # SSL CONFIGS
-       # listen 443 ssl;
-       # listen [::]:443 ssl;
-       # include snippets/self-signed.conf;
-       # include snippets/ssl-params.conf;
-
-        server_name ~^(?<subdomain>\w+)\.backendphp70\.com\$;
-        set \$MAGE_ROOT /var/www/\$subdomain;
-        set \$MAGE_MODE developer;
-        
-        location ~* \.php\$ {
-                # With php-fpm unix sockets
-                fastcgi_pass    unix:/run/php/php7.0-fpm.sock;
-                include         fastcgi_params;
-                fastcgi_param   SCRIPT_FILENAME    \$document_root\$fastcgi_script_name;
-                fastcgi_param   SCRIPT_NAME        \$fastcgi_script_name;
-        }
-        include /var/www/nginx.conf.sample;
-}
-EOL
-
-sudo tee /etc/nginx/sites-available/frontend.php70.com << EOL
-server {
-    listen 80;
-    listen [::]:80;
-    server_name ~^(?<subdomain>\w+)\.frontendphp70\.co\.uk\$;
-    root /var/www/\$subdomain/public;
-    index  index.php index.html index.htm;
-
-    location / {
-        try_files \$uri \$uri/ /index.php\$query_string;
-        }
-
-    location ~ \.php\$ {
-       include snippets/fastcgi-php.conf;
-       fastcgi_pass    unix:/run/php/php7.0-fpm.sock;
-       fastcgi_param   SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
-   }
-
-}
-EOL
-
-sudo tee /etc/nginx/sites-available/backend.php71.com << EOL
-server {
-       listen 80;
-       listen [::]:80;
-       # SSL CONFIGS
-       # listen 443 ssl;
-       # listen [::]:443 ssl;
-       # include snippets/self-signed.conf;
-       # include snippets/ssl-params.conf;
-
-        server_name ~^(?<subdomain>\w+)\.backendphp71\.com\$;
-        set \$MAGE_ROOT /var/www/\$subdomain;
-        set \$MAGE_MODE developer;
-        
-        location ~* \.php\$ {
-                # With php-fpm unix sockets
-                fastcgi_pass    unix:/run/php/php7.1-fpm.sock;
-                include         fastcgi_params;
-                fastcgi_param   SCRIPT_FILENAME    \$document_root\$fastcgi_script_name;
-                fastcgi_param   SCRIPT_NAME        \$fastcgi_script_name;
-        }
-        include /var/www/nginx.conf.sample;
-}
-EOL
-
-sudo tee /etc/nginx/sites-available/frontend.php71.com << EOL
-server {
-    listen 80;
-    listen [::]:80;
-    server_name ~^(?<subdomain>\w+)\.frontendphp71\.co\.uk\$;
-    root /var/www/\$subdomain/public;
-    index  index.php index.html index.htm;
-
-    location / {
-        try_files \$uri \$uri/ /index.php\$query_string;
-        }
-
-    location ~ \.php\$ {
-       include snippets/fastcgi-php.conf;
-       fastcgi_pass    unix:/run/php/php7.1-fpm.sock;
-       fastcgi_param   SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
-   }
-
-}
-EOL
-
-sudo tee /etc/nginx/sites-available/backend.php72.com << EOL
-server {
-       listen 80;
-       listen [::]:80;
-       # SSL CONFIGS
-       # listen 443 ssl;
-       # listen [::]:443 ssl;
-       # include snippets/self-signed.conf;
-       # include snippets/ssl-params.conf;
-
-        server_name ~^(?<subdomain>\w+)\.backendphp72\.com\$;
-        set \$MAGE_ROOT /var/www/\$subdomain;
-        set \$MAGE_MODE developer;
-
-        location ~* \.php\$ {
-                # With php-fpm unix sockets
-                fastcgi_pass    unix:/run/php/php7.2-fpm.sock;
-                include         fastcgi_params;
-                fastcgi_param   SCRIPT_FILENAME    \$document_root\$fastcgi_script_name;
-                fastcgi_param   SCRIPT_NAME        \$fastcgi_script_name;
-        }
-        include /var/www/nginx.conf.sample;
-}
-EOL
-
-sudo tee /etc/nginx/sites-available/frontend.php72.com << EOL
-server {
-    listen 80;
-    listen [::]:80;
-    server_name ~^(?<subdomain>\w+)\.frontendphp72\.co\.uk\$;
-    root /var/www/\$subdomain/public;
-    index  index.php index.html index.htm;
-
-    location / {
-        try_files \$uri \$uri/ /index.php\$query_string;
-        }
-
-    location ~ \.php\$ {
-       include snippets/fastcgi-php.conf;
-       fastcgi_pass    unix:/run/php/php7.2-fpm.sock;
-       fastcgi_param   SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
-   }
-
-}
-EOL
-
-sudo tee /etc/nginx/sites-available/backend.php73.com << EOL
-server {
-       listen 80;
-       listen [::]:80;
-       # SSL CONFIGS
-       # listen 443 ssl;
-       # listen [::]:443 ssl;
-       # include snippets/self-signed.conf;
-       # include snippets/ssl-params.conf;
-
-        server_name ~^(?<subdomain>\w+)\.backendphp73\.com\$;
-        set \$MAGE_ROOT /var/www/\$subdomain;
-        set \$MAGE_MODE developer;
-
-        location ~* \.php\$ {
-                # With php-fpm unix sockets
-                fastcgi_pass    unix:/run/php/php7.3-fpm.sock;
-                include         fastcgi_params;
-                fastcgi_param   SCRIPT_FILENAME    \$document_root\$fastcgi_script_name;
-                fastcgi_param   SCRIPT_NAME        \$fastcgi_script_name;
-        }
-        include /var/www/nginx.conf.sample;
-}
-EOL
-
-sudo tee /etc/nginx/sites-available/frontend.php73.com << EOL
-server {
-    listen 80;
-    listen [::]:80;
-    server_name ~^(?<subdomain>\w+)\.frontendphp73\.co\.uk\$;
-    root /var/www/\$subdomain/public;
-    index  index.php index.html index.htm;
-
-    location / {
-        try_files \$uri \$uri/ /index.php\$query_string;
-        }
-
-    location ~ \.php\$ {
-       include snippets/fastcgi-php.conf;
-       fastcgi_pass    unix:/run/php/php7.3-fpm.sock;
-       fastcgi_param   SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
-   }
-
-}
-EOL
-
 #create symlink to sites-enabled folder
 
-sudo ln -s /etc/nginx/sites-available/backend.php56.com /etc/nginx/sites-enabled/
-sudo ln -s /etc/nginx/sites-available/backend.php70.com /etc/nginx/sites-enabled/
-sudo ln -s /etc/nginx/sites-available/backend.php71.com /etc/nginx/sites-enabled/
-sudo ln -s /etc/nginx/sites-available/backend.php72.com /etc/nginx/sites-enabled/
-sudo ln -s /etc/nginx/sites-available/backend.php73.com /etc/nginx/sites-enabled/
-sudo ln -s /etc/nginx/sites-available/frontend.php56.com /etc/nginx/sites-enabled/
-sudo ln -s /etc/nginx/sites-available/frontend.php70.com /etc/nginx/sites-enabled/
-sudo ln -s /etc/nginx/sites-available/frontend.php71.com /etc/nginx/sites-enabled/
-sudo ln -s /etc/nginx/sites-available/frontend.php72.com /etc/nginx/sites-enabled/
-sudo ln -s /etc/nginx/sites-available/frontend.php73.com /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/$1.com /etc/nginx/sites-enabled/  
+}
+
+createFrontendConfigs(){
+
+#create nginx config files in sites-available for Frontend(Laravel)
+
+sudo tee /etc/nginx/sites-available/$1.com << EOL
+server {
+    listen 80;
+    listen [::]:80;
+    server_name ~^(?<subdomain>\w+)\.$2\.co\.uk\$;
+    root /var/www/\$subdomain/public;
+    index  index.php index.html index.htm;
+
+    location / {
+        try_files \$uri \$uri/ /index.php\$query_string;
+        }
+
+    location ~ \.php\$ {
+       include snippets/fastcgi-php.conf;
+       fastcgi_pass    unix:/run/php/$3-fpm.sock;
+       fastcgi_param   SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+   }
+
+}
+EOL
+#create symlink to sites-enabled folder
+
+sudo ln -s /etc/nginx/sites-available/$1.com /etc/nginx/sites-enabled/  
+}
+
+createCakeConfigs() {
+
+#create nginx config files in sites-available for CakePHP
+
+sudo tee /etc/nginx/sites-available/$1.com << EOL
+server {
+    listen 80;
+    listen [::]:80;
+    server_name ~^(?<subdomain>\w+)\.$2\.com\$;
+    root /var/www/\$subdomain/webroot;
+
+    log_not_found off;
+    charset utf-8;
+    location / {
+
+      index index.php index.html index.htm;
+      try_files \$uri \$uri/ /index.php?\$uri&\$args;
+    }
+
+    # Static files.
+    # Set expire headers, Turn off access log
+    location ~* \favicon.ico\$ {
+      access_log off;
+      expires 1d;
+      add_header Cache-Control public;
+    }
+    location ~ ^/(img|cjs|ccss)/ {
+      access_log off;
+      expires 7d;
+      add_header Cache-Control public;
+    }
+
+    # Deny access to .htaccess files,
+    # git & svn repositories, etc
+    location ~ /(\.ht|\.git|\.svn) {
+      deny  all;
+    }
+
+    location ~ .php?\$ {
+        fastcgi_pass unix:/run/php/$3-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
+        include fastcgi_params;
+    }
+
+}
+EOL
+#create symlink to sites-enabled folder
+
+sudo ln -s /etc/nginx/sites-available/$1.com /etc/nginx/sites-enabled/ 
+}
+
+
+#backend config for php5.6
+createBackendConfigs "backend.php56" "backendphp56" "php5.6"
+#frontend config for php5.6
+createFrontendConfigs "frontend.php56" "frontendphp56" "php5.6"
+#cakePHP config for php5.6
+createCakeConfigs "cake.php56" "cakephp56" "php5.6"
+
+#backend config for php7.0
+createBackendConfigs "backend.php70" "backendphp70" "php7.0"
+#frontend config for php7.0
+createFrontendConfigs "frontend.php70" "frontendphp70" "php7.0"
+#cakePHP config for php7.0
+createCakeConfigs "cake.php70" "cakephp70" "php7.0"
+
+#backend config for php7.1
+createBackendConfigs "backend.php71" "backendphp71" "php7.1"
+#frontend config for php7.1
+createFrontendConfigs "frontend.php71" "frontendphp71" "php7.1"
+#cakePHP config for php7.0
+createCakeConfigs "cake.php71" "cakephp71" "php7.1"
+
+#backend config for php7.2
+createBackendConfigs "backend.php72" "backendphp72" "php7.2"
+#frontend config for php7.2
+createFrontendConfigs "frontend.php72" "frontendphp72" "php7.2"
+#cakePHP config for php7.0
+createCakeConfigs "cake.php72" "cakephp72" "php7.2"
+
+#backend config for php7.3
+createBackendConfigs "backend.php73" "backendphp73" "php7.3"
+#frontend config for php7.3
+createFrontendConfigs "frontend.php73" "frontendphp73" "php7.3"
+#cakePHP config for php7.0
+createCakeConfigs "cake.php73" "cakephp73" "php7.3"
 
 #check if it is all ok
 sudo nginx -t
