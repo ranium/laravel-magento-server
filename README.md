@@ -10,7 +10,7 @@ This script is inspired by Homestead and comes in handy if you want to run a ded
 
   - Relatively fast than homestead environment 
   - No need to add virtual host, it's already done
-  - Supports PHP &nbsp; *5.6 &nbsp; 7.0 &nbsp; 7.1 &nbsp; 7.2 &nbsp; 7.3*
+  - Supports PHP &nbsp; *5.6 &nbsp; 7.0 &nbsp; 7.1 &nbsp; 7.2 &nbsp; 7.3 &nbsp; 7.4*
   - Clone project, run laravel/magento commands and That's all!
 
 
@@ -55,6 +55,7 @@ You'll get the idea by referring following table:-
 | 7.1 | {project-name}.backendphp71.com | {project-name}.frontendphp71.co.uk
 | 7.2 | {project-name}.backendphp72.com | {project-name}.frontendphp72.co.uk
 | 7.3 | {project-name}.backendphp73.com | {project-name}.frontendphp73.co.uk
+| 7.4 | {project-name}.backendphp74.com | {project-name}.frontendphp74.co.uk
 
 
 
